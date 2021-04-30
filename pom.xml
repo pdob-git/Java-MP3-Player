@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.player</groupId>
-    <artifactId>Java-MP3-Palyer</artifactId>
+    <artifactId>Java-MP3-Player</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
