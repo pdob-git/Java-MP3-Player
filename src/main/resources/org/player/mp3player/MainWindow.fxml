@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="157.0" prefWidth="303.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.player.mp3player.MainWindow">
+   <children>
+      <Label fx:id="songTimeLabel" alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="98.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="00:00" textAlignment="RIGHT" textFill="LIME" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <font>
+            <Font size="19.0" />
+         </font>
+         <padding>
+            <Insets right="5.0" />
+         </padding>
+      </Label>
+      <Label fx:id="songTitleLabel" layoutX="112.0" layoutY="25.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Song Title" textFill="LIME">
+         <padding>
+            <Insets left="5.0" right="5.0" />
+         </padding>
+      </Label>
+      <Button fx:id="previousButton" layoutX="14.0" layoutY="117.0" mnemonicParsing="false" onAction="#previousMedia" prefHeight="25.0" prefWidth="40.0" text="PREV" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="playButton" layoutX="45.0" layoutY="127.0" mnemonicParsing="false" onAction="#playMedia" prefHeight="25.0" prefWidth="40.0" text="PLAY">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="pauseButton" layoutX="83.0" layoutY="127.0" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="25.0" prefWidth="40.0" text="PAUSE">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="stopButton" layoutX="123.0" layoutY="127.0" mnemonicParsing="false" onAction="#stopMedia" prefHeight="25.0" prefWidth="40.0" text="STOP">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="nextButton" layoutX="163.0" layoutY="127.0" mnemonicParsing="false" onAction="#nextMedia" prefHeight="25.0" prefWidth="40.0" text="NEXT">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="openButton" layoutX="210.0" layoutY="127.0" mnemonicParsing="false" onAction="#openMedia" prefHeight="25.0" prefWidth="40.0" text="OPEN">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <ProgressBar fx:id="songProgressBar" layoutX="6.0" layoutY="100.0" prefHeight="20.0" prefWidth="290.0" progress="0.0" />
+      <Button fx:id="shuffleButton" layoutX="123.0" layoutY="69.0" mnemonicParsing="false" onAction="#shufflePlayList" prefHeight="25.0" prefWidth="45.0" text="SHUFFLE">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="repeatButton" layoutX="170.0" layoutY="69.0" mnemonicParsing="false" onAction="#repeatPlayList" prefHeight="25.0" prefWidth="45.0" text="REPEAT">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+      <Button fx:id="playlistButton" layoutX="244.0" layoutY="69.0" mnemonicParsing="false" onAction="#openPlayList" prefHeight="25.0" prefWidth="25.0" text="PL">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
