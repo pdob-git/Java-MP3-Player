@@ -1,4 +1,4 @@
-package org.player.mp3player;
+package org.player.mp3player.controllers;
 
 
 import javafx.event.ActionEvent;
