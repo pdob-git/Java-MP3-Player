@@ -1,4 +1,4 @@
-package org.player.mp3player;
+package org.player.mp3player.controllers;
 
 
 import javafx.event.ActionEvent;
@@ -61,6 +61,10 @@ public class MainWindow implements Initializable {
         directory = new File("music");
 
         files = directory.listFiles();
+        if(!directory.exists()){
+            directory.mkdir();
+        }
+
 
         if (files != null){
             for (File file : files){
