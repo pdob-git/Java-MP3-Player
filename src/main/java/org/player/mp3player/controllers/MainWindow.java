@@ -93,7 +93,7 @@ public class MainWindow implements Initializable {
 
     }
     public void stopMedia(){
-
+        mediaPlayer.stop();
 
     }
     public void previousMedia(){
