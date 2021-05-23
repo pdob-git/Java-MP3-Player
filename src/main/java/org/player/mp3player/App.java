@@ -17,10 +17,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("controllers/MainWindow.fxml"));
 
         Scene scene = new Scene(root);
-
+        scene.getStylesheets().add(getClass().getResource("controllers/MainWindow.css").toExternalForm());
+//        System.out.println(getClass().getResource("controllers/MainWindow.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
