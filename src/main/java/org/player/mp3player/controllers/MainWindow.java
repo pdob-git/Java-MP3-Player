@@ -3,7 +3,10 @@ package org.player.mp3player.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -14,6 +17,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import org.player.mp3player.model.Music;
+import org.player.mp3player.model.MusicItem;
+import org.player.mp3player.repositories.FileDataLoader;
 
 import java.io.File;
 import java.net.URL;
@@ -27,7 +34,7 @@ public class MainWindow implements Initializable {
 
 
     @FXML
-    private AnchorPane pane;
+    private AnchorPane anchorPane;
 
     @FXML
     private Label songTimeLabel;
@@ -71,6 +78,8 @@ public class MainWindow implements Initializable {
     private Image imageOpen;
     private ImageView imageViewOpen;
 
+    Stage playListStage;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -97,12 +106,26 @@ public class MainWindow implements Initializable {
 
         songTitleLabel.setText(songs.get(songNumber).getName());
 
+        FileDataLoader fileDataLoader = new FileDataLoader();
+        ArrayList<MusicItem> musicItems = fileDataLoader.loadData(directory);
+
+        //Music music = Music.getInstance(musicItems);
+
 
     }
 
     public void playMedia(){
 
         mediaPlayer.play();
+        Double timeSec = mediaPlayer.getTotalDuration().toSeconds();
+        Double timeMin = mediaPlayer.getTotalDuration().toMinutes();
+        Long timeMinLong = Math.round(timeMin);
+        Long timeSecLong = Math.round(timeSec) - 60 * timeMinLong;
+        String time = timeMinLong.toString() + ":" + timeSecLong.toString();
+
+        System.out.println(time);
+
+
 
     }
 
@@ -137,7 +160,22 @@ public class MainWindow implements Initializable {
     public void shufflePlayList(ActionEvent event) {
     }
 
-    public void openPlayList(ActionEvent event) {
+    public void openPlayList(ActionEvent event) throws Exception  {
+        Parent playListWindow = FXMLLoader.load(getClass().getResource("PlayListWindow.fxml"));
+
+        Scene playListScene = new Scene(playListWindow);
+
+        playListScene.getStylesheets().add(getClass().getResource("PlayListWindow.css").toExternalForm());
+
+        if(playListStage == null){
+            playListStage = new Stage();
+        }
+
+        Stage thisStage = (Stage) anchorPane.getScene().getWindow();
+        playListStage.setScene(playListScene);
+        playListStage.setX(thisStage.getX() + 300);
+        playListStage.setY(thisStage.getY());
+        playListStage.show();
     }
 
     private void initButtons(){
