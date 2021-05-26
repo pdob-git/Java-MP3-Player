@@ -3,14 +3,13 @@ package org.player.mp3player.repositories;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
 import org.player.mp3player.services.DataLoader;
 
 import java.io.File;
 
 import java.util.ArrayList;
-import java.util.Map;
+
 
 public class FileDataLoader implements DataLoader {
 
@@ -26,11 +25,9 @@ public class FileDataLoader implements DataLoader {
     @Override
     public ArrayList<MusicItem> loadData(File directory) {
 
-
-
         File[] files = directory.listFiles();
 
-        System.out.println("In File DataLoader");
+//        System.out.println("In File DataLoader");
 
         if (files != null){
             int id = 1;
@@ -38,36 +35,34 @@ public class FileDataLoader implements DataLoader {
                 String path = file.getPath();
                 String substring = path.substring(path.length() - 4);
                 if( substring.equals(".mp3")){
-                    ready = false;
-                    createMusicItem(id, file);
+
+                    addMusicItemToPlaylist(id, file);
                     id++;
                 }
 
                 //To comment out
-                System.out.println("LoadData");
-                System.out.println(file.getName());
+//                System.out.println("LoadData");
+//                System.out.println(file.getName());
             }
         }
         return playList;
     }
 
-    private MusicItem createMusicItem(int id,File file){
+    private void addMusicItemToPlaylist(int id,File file){
 
         Media media = new Media(file.toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-
 
         mediaPlayer.setOnReady(new Runnable() {
 
             @Override
             public void run() {
                 //To comment out
-                System.out.println("createMusicItem");
-                System.out.println("File " + file.getName());
-                System.out.println("Duration: " + calculateSongTime(media.getDuration()));
-                System.out.println("Artist: " + (String)media.getMetadata().get("artist"));
-                System.out.println("Title: " + (String)media.getMetadata().get("title"));
+//                System.out.println("createMusicItem");
+//                System.out.println("File " + file.getName());
+//                System.out.println("Duration: " + calculateSongTime(media.getDuration()));
+//                System.out.println("Artist: " + (String)media.getMetadata().get("artist"));
+//                System.out.println("Title: " + (String)media.getMetadata().get("title"));
 
                 Integer ID = Integer.valueOf(id);
                 String artist = (String)media.getMetadata().get("artist");
@@ -81,18 +76,8 @@ public class FileDataLoader implements DataLoader {
 
                 musicItem = new MusicItem(ID, artist, title, time, path);
                 playList.add(musicItem);
-
-                Music music = Music.getInstance(playList);
-
-                ready = true;
-
             }
         });
-
-
-            return musicItem;
-
-
     }
 
     private String calculateSongTime(Duration duration){

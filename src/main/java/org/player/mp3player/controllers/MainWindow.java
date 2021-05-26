@@ -77,6 +77,7 @@ public class MainWindow implements Initializable {
     private ImageView imageViewStop;
     private Image imageOpen;
     private ImageView imageViewOpen;
+    private Music music;
 
     Stage playListStage;
 
@@ -88,10 +89,11 @@ public class MainWindow implements Initializable {
         songs = new ArrayList<File>();
         directory = new File("music");
 
-        files = directory.listFiles();
         if(!directory.exists()){
             directory.mkdir();
         }
+
+        files = directory.listFiles();
 
 
         if (files != null){
@@ -101,29 +103,28 @@ public class MainWindow implements Initializable {
             }
         }
 
-        media = new Media(songs.get(songNumber).toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
-
-        songTitleLabel.setText(songs.get(songNumber).getName());
-
         FileDataLoader fileDataLoader = new FileDataLoader();
         ArrayList<MusicItem> musicItems = fileDataLoader.loadData(directory);
 
-        //Music music = Music.getInstance(musicItems);
-
+        music = Music.getInstance(musicItems);
+        
 
     }
 
     public void playMedia(){
 
-        mediaPlayer.play();
-        Double timeSec = mediaPlayer.getTotalDuration().toSeconds();
-        Double timeMin = mediaPlayer.getTotalDuration().toMinutes();
-        Long timeMinLong = Math.round(timeMin);
-        Long timeSecLong = Math.round(timeSec) - 60 * timeMinLong;
-        String time = timeMinLong.toString() + ":" + timeSecLong.toString();
+        media = new Media(music.playList.get(songNumber).getPath());
+        mediaPlayer = new MediaPlayer(media);
+        songTitleLabel.setText(music.playList.get(songNumber).getTitle());
 
-        System.out.println(time);
+        mediaPlayer.play();
+//        Double timeSec = mediaPlayer.getTotalDuration().toSeconds();
+//        Double timeMin = mediaPlayer.getTotalDuration().toMinutes();
+//        Long timeMinLong = Math.round(timeMin);
+//        Long timeSecLong = Math.round(timeSec) - 60 * timeMinLong;
+//        String time = timeMinLong.toString() + ":" + timeSecLong.toString();
+//
+//        System.out.println(time);
 
 
 
@@ -161,11 +162,11 @@ public class MainWindow implements Initializable {
     }
 
     public void openPlayList(ActionEvent event) throws Exception  {
-        Parent playListWindow = FXMLLoader.load(getClass().getResource("PlayListWindow.fxml"));
+        Parent playListWindow = FXMLLoader.load(getClass().getResource("../fxml/PlayListWindow.fxml"));
 
         Scene playListScene = new Scene(playListWindow);
 
-        playListScene.getStylesheets().add(getClass().getResource("PlayListWindow.css").toExternalForm());
+        playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindow.css").toExternalForm());
 
         if(playListStage == null){
             playListStage = new Stage();
@@ -179,72 +180,32 @@ public class MainWindow implements Initializable {
     }
 
     private void initButtons(){
+
         //Set Prev Button Icon
-        imagePrev = new Image(this.getClass().getResourceAsStream("../icons/previous.png"));
-        imageViewPrev = new ImageView(imagePrev);
-        imageViewPrev.setFitHeight(20);
-        imageViewPrev.setPreserveRatio(true);
-        previousButton.setGraphic(imageViewPrev);
-        previousButton.setText(null);
-        Tooltip previousTooltip = new Tooltip("Previous");
-        previousTooltip.setFont(Font.font(9));
-        previousButton.setTooltip(previousTooltip);
-
+        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous", imagePrev, imageViewPrev);
         //Set Play Button Icon
-        imagePlay = new Image(this.getClass().getResourceAsStream("../icons/play.png"));
-        imageViewPlay = new ImageView(imagePlay);
-        imageViewPlay.setFitHeight(20);
-        imageViewPlay.setPreserveRatio(true);
-        playButton.setGraphic(imageViewPlay);
-        playButton.setText(null);
-        Tooltip playTooltip = new Tooltip("Play");
-        playTooltip.setFont(Font.font(9));
-        playButton.setTooltip(playTooltip);
-
+        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", "Play", imagePlay, imageViewPlay);
         //Set Pause Button Icon
-        imagePause = new Image(this.getClass().getResourceAsStream("../icons/pause.png"));
-        imageViewPause = new ImageView(imagePause);
-        imageViewPause.setFitHeight(20);
-        imageViewPause.setPreserveRatio(true);
-        pauseButton.setGraphic(imageViewPause);
-        pauseButton.setText(null);
-        Tooltip pauseTooltip = new Tooltip("Pause");
-        pauseTooltip.setFont(Font.font(9));
-        pauseButton.setTooltip(pauseTooltip);
-
-
+        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", "Pause", imagePause, imageViewPause);
         //Set Stop Button Icon
-        imageStop = new Image(this.getClass().getResourceAsStream("../icons/stop.png"));
-        imageViewStop = new ImageView(imageStop);
-        imageViewStop.setFitHeight(20);
-        imageViewStop.setPreserveRatio(true);
-        stopButton.setGraphic(imageViewStop);
-        stopButton.setText(null);
-        Tooltip stopTooltip = new Tooltip("Stop");
-        stopTooltip.setFont(Font.font(9));
-        stopButton.setTooltip(stopTooltip);
-
+        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", "Stop", imageStop, imageViewStop);
         //Set Next Button Icon
-        imageNext = new Image(this.getClass().getResourceAsStream("../icons/next.png"));
-        imageViewNext = new ImageView(imageNext);
-        imageViewNext.setFitHeight(20);
-        imageViewNext.setPreserveRatio(true);
-        nextButton.setGraphic(imageViewNext);
-        nextButton.setText(null);
-        Tooltip nextTooltip = new Tooltip("Next");
-        nextTooltip.setFont(Font.font(9));
-        nextButton.setTooltip(nextTooltip);
-
+        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", "Next", imageNext, imageViewNext);
         //Set Open Button Icon
-        imageOpen = new Image(this.getClass().getResourceAsStream("../icons/eject.png"));
-        imageViewOpen = new ImageView(imageOpen);
-        imageViewOpen.setFitHeight(20);
-        imageViewOpen.setPreserveRatio(true);
-        openButton.setGraphic(imageViewOpen);
-        openButton.setText(null);
-        Tooltip openTooltip = new Tooltip("Open");
-        openTooltip.setFont(Font.font(9));
-        openButton.setTooltip(openTooltip);
+        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", "Open", imageOpen, imageViewOpen);
 
+    }
+
+    private void setButtonGraphicsAndTooltip(Button button, String iconPath, String toolTip, Image image, ImageView imageView){
+        //Set Button graphic and tooltip
+        image = new Image(this.getClass().getResourceAsStream(iconPath));
+        imageView = new ImageView(image);
+        imageView.setFitHeight(20);
+        imageView.setPreserveRatio(true);
+        button.setGraphic(imageView);
+        button.setText(null);
+        Tooltip openTooltip = new Tooltip(toolTip);
+        openTooltip.setFont(Font.font(9));
+        button.setTooltip(openTooltip);
     }
 }
