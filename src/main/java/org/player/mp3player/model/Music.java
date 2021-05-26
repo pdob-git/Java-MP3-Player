@@ -10,18 +10,19 @@ public class Music {
     private static Music instance;
     public ArrayList<MusicItem> playList;
 
-    private Music(ArrayList<MusicItem> playList) {
-        this.playList = playList;
+    private Music() {
+
     }
 
     public static Music getInstance(ArrayList<MusicItem> playList) {
-        if (instance == null) {
-            instance = new Music(playList);
-        }
+        Music.getInstance().playList = playList;
         return instance;
     }
 
     public static Music getInstance() {
+        if (instance == null) {
+            instance = new Music();
+        }
         return instance;
     }
 
