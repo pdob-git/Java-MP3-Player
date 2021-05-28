@@ -137,7 +137,7 @@ public class MainWindow implements Initializable {
     }
     public void stopMedia(){
 
-
+        mediaPlayer.stop();
     }
     public void previousMedia(){
 
@@ -146,6 +146,26 @@ public class MainWindow implements Initializable {
 
     public void nextMedia(){
 
+        if(songNumber < songs.size() - 1) {
+            songNumber++;
+            mediaPlayer.stop();
+
+            media = new Media(music.playList.get(songNumber).getPath());
+            mediaPlayer = new MediaPlayer(media);
+
+            songTitleLabel.setText(music.playList.get(songNumber).getTitle());
+            playMedia();
+        } else {
+
+            songNumber = 0;
+            mediaPlayer.stop();
+
+            media = new Media(music.playList.get(songNumber).getPath());
+            mediaPlayer = new MediaPlayer(media);
+
+            songTitleLabel.setText(music.playList.get(songNumber).getTitle());
+            playMedia();
+        }
 
     }
 
