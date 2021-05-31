@@ -26,4 +26,11 @@ public class Music {
         return instance;
     }
 
+    public String getSongPath(int songNumber) {
+       return playList.get(songNumber).getPath();
+    }
+
+    public String getSongTitle(int songNumber) {
+        return playList.get(songNumber).getTitle();
+    }
 }

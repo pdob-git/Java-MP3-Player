@@ -18,6 +18,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.player.mp3player.controllers.title.SongTitleController;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
 import org.player.mp3player.repositories.FileDataLoader;
@@ -78,6 +79,7 @@ public class MainWindow implements Initializable {
     private Image imageOpen;
     private ImageView imageViewOpen;
     private Music music;
+    private SongTitleController songTitleController;
 
     Stage playListStage;
 
@@ -107,16 +109,15 @@ public class MainWindow implements Initializable {
         ArrayList<MusicItem> musicItems = fileDataLoader.loadData(directory);
 
         music = Music.getInstance(musicItems);
-        
+        songTitleController =new SongTitleController(songTitleLabel);
 
     }
 
     public void playMedia(){
 
-        media = new Media(music.playList.get(songNumber).getPath());
+        media = new Media(music.getSongPath(songNumber));
         mediaPlayer = new MediaPlayer(media);
-        songTitleLabel.setText(music.playList.get(songNumber).getTitle());
-
+        songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
         mediaPlayer.play();
 //        Double timeSec = mediaPlayer.getTotalDuration().toSeconds();
 //        Double timeMin = mediaPlayer.getTotalDuration().toMinutes();
