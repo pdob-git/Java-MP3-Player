@@ -7,9 +7,9 @@ import java.util.Objects;
 import java.util.Timer;
 
 public class SongTitleController implements AutoCloseable {
-    private static final int TITLE_LABEL_SIZE = 34;
+    private static final int TITLE_LABEL_SIZE = 30;
     private static final int TIMER_PERIOD = 200;
-    private static final String ONE_ROTATE_SEPARATOR = " ";
+    private static final String ONE_ROTATE_SEPARATOR = "***   ";
     private final Label songTitleLabel;
     private final Timer titleChangeTimer;
     private SongTitleTimerTask updateSongTitleTimerTask;
@@ -27,6 +27,9 @@ public class SongTitleController implements AutoCloseable {
             runSongTitleUpdateTask(currentSongTitle);
 
         } else {
+            if (Objects.nonNull(updateSongTitleTimerTask)) {
+                updateSongTitleTimerTask.cancel();
+            }
             setSongTitle(currentSongTitle);
         }
     }
