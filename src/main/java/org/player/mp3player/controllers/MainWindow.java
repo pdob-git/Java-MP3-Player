@@ -110,11 +110,10 @@ public class MainWindow implements Initializable {
 
         music = Music.getInstance(musicItems);
         songTitleController =new SongTitleController(songTitleLabel);
-
     }
 
     public void playMedia(){
-
+      
         media = new Media(music.getSongPath(songNumber));
         mediaPlayer = new MediaPlayer(media);
         songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
@@ -127,8 +126,6 @@ public class MainWindow implements Initializable {
 //
 //        System.out.println(time);
 
-
-
     }
 
     public void pauseMedia(){
@@ -138,6 +135,7 @@ public class MainWindow implements Initializable {
     }
     public void stopMedia(){
 
+        mediaPlayer.stop();
 
     }
     public void previousMedia(){
@@ -146,6 +144,27 @@ public class MainWindow implements Initializable {
     }
 
     public void nextMedia(){
+
+        if(songNumber < songs.size() - 1) {
+            songNumber++;
+            mediaPlayer.stop();
+
+            media = new Media(music.playList.get(songNumber).getPath());
+            mediaPlayer = new MediaPlayer(media);
+
+            songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
+            playMedia();
+        } else {
+
+            songNumber = 0;
+            mediaPlayer.stop();
+
+            media = new Media(music.playList.get(songNumber).getPath());
+            mediaPlayer = new MediaPlayer(media);
+
+            songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
+            playMedia();
+        }
 
 
     }
