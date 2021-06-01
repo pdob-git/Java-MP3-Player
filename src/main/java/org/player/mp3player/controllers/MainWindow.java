@@ -76,24 +76,22 @@ public class MainWindow implements Initializable {
         media = new Media(songs.get(songNumber).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
 
-        songTitleLabel.setText(songs.get(songNumber).getName());
+
+
 
 
     }
 
     public void playMedia(){
-
         mediaPlayer.play();
-
+        songTitleLabel.setText(songs.get(songNumber).getName());
     }
 
     public void pauseMedia(){
-
         mediaPlayer.pause();
-
     }
     public void stopMedia(){
-
+        mediaPlayer.stop();
 
     }
     public void previousMedia(){
