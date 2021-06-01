@@ -1,15 +1,20 @@
 package org.player.mp3player.controllers;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
@@ -38,7 +43,7 @@ public class MainWindow implements Initializable {
     private Button repeatButton, shuffleButton, playlistButton;
 
     @FXML
-    private ProgressBar songProgressBar;
+    private Slider songProgressSlider;
 
     private Media media;
     private MediaPlayer mediaPlayer;
@@ -76,10 +81,34 @@ public class MainWindow implements Initializable {
         media = new Media(songs.get(songNumber).toURI().toString());
         mediaPlayer = new MediaPlayer(media);
 
+        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+                songProgressSlider.setValue(newValue.toSeconds());
+            }
+        });
 
+        songProgressSlider.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mediaPlayer.seek(Duration.seconds(songProgressSlider.getValue()));
+            }
+        });
 
+        songProgressSlider.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mediaPlayer.seek(Duration.seconds(songProgressSlider.getValue()));
+            }
+        });
 
-
+        mediaPlayer.setOnReady(new Runnable() {
+            @Override
+            public void run() {
+                Duration total = media.getDuration();
+                songProgressSlider.setMax(total.toSeconds());
+            }
+        });
     }
 
     public void playMedia(){
