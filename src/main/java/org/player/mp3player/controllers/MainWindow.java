@@ -79,6 +79,7 @@ public class MainWindow implements Initializable {
         }
 
 
+
         media = new Media(songs.get(songNumber).toURI().toString());
 
 
@@ -123,7 +124,6 @@ public class MainWindow implements Initializable {
         }
         public void stopMedia () {
             mediaPlayer.stop();
-
         }
         public void previousMedia () {
 
