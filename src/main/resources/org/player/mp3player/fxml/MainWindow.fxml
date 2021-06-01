@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="157.0" prefWidth="303.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.player.mp3player.controllers.MainWindow">
+
+<AnchorPane fx:id="anchorPane" prefHeight="160.0" prefWidth="300.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.player.mp3player.controllers.MainWindow">
    <children>
       <Label fx:id="songTimeLabel" alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="98.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="00:00" textAlignment="RIGHT" textFill="LIME" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
          <opaqueInsets>
@@ -55,17 +56,18 @@
             <Font size="7.0" />
          </font>
       </Button>
-      <Button fx:id="shuffleButton" layoutX="123.0" layoutY="69.0" mnemonicParsing="false" onAction="#shufflePlayList" prefHeight="25.0" prefWidth="45.0" text="SHUFFLE">
+      <Button fx:id="shuffleButton" layoutX="123.0" layoutY="69.0" mnemonicParsing="false" onAction="#shufflePlayList" prefHeight="25.0" prefWidth="51.0" style="-fx-font-weight: bold;" text="SHUFFLE">
+
          <font>
             <Font size="7.0" />
          </font>
       </Button>
-      <Button fx:id="repeatButton" layoutX="170.0" layoutY="69.0" mnemonicParsing="false" onAction="#repeatPlayList" prefHeight="25.0" prefWidth="45.0" text="REPEAT">
+      <Button fx:id="repeatButton" layoutX="177.0" layoutY="69.0" mnemonicParsing="false" onAction="#repeatPlayList" prefHeight="25.0" prefWidth="45.0" style="-fx-font-weight: bold;" text="REPEAT">
          <font>
             <Font size="7.0" />
          </font>
       </Button>
-      <Button fx:id="playlistButton" layoutX="244.0" layoutY="69.0" mnemonicParsing="false" onAction="#openPlayList" prefHeight="25.0" prefWidth="25.0" text="PL">
+      <Button fx:id="playlistButton" layoutX="244.0" layoutY="69.0" mnemonicParsing="false" onAction="#openPlayList" prefHeight="25.0" prefWidth="25.0" style="-fx-font-weight: bold;" text="PL">
          <font>
             <Font size="7.0" />
          </font>
