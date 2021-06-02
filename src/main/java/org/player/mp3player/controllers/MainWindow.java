@@ -1,7 +1,10 @@
 package org.player.mp3player.controllers;
 
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,19 +12,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.player.mp3player.controllers.title.SongTitleController;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
 import org.player.mp3player.repositories.FileDataLoader;
+
 
 import java.io.File;
 import java.net.URL;
@@ -50,7 +56,7 @@ public class MainWindow implements Initializable {
     private Button repeatButton, shuffleButton, playlistButton;
 
     @FXML
-    private ProgressBar songProgressBar;
+    private Slider songProgressSlider;
 
     private Media media;
     private MediaPlayer mediaPlayer;
@@ -118,28 +124,17 @@ public class MainWindow implements Initializable {
         mediaPlayer = new MediaPlayer(media);
         songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
         mediaPlayer.play();
-//        Double timeSec = mediaPlayer.getTotalDuration().toSeconds();
-//        Double timeMin = mediaPlayer.getTotalDuration().toMinutes();
-//        Long timeMinLong = Math.round(timeMin);
-//        Long timeSecLong = Math.round(timeSec) - 60 * timeMinLong;
-//        String time = timeMinLong.toString() + ":" + timeSecLong.toString();
-//
-//        System.out.println(time);
+        startSlider(mediaPlayer, songProgressSlider);
 
     }
 
     public void pauseMedia(){
-
         mediaPlayer.pause();
-
     }
     public void stopMedia(){
-
         mediaPlayer.stop();
-
     }
     public void previousMedia(){
-
 
     }
 
@@ -171,9 +166,7 @@ public class MainWindow implements Initializable {
 
     public void openMedia(){
 
-
     }
-
 
     public void repeatPlayList(ActionEvent event) {
     }
@@ -227,5 +220,36 @@ public class MainWindow implements Initializable {
         Tooltip openTooltip = new Tooltip(toolTip);
         openTooltip.setFont(Font.font(9));
         button.setTooltip(openTooltip);
+    }
+
+    private void startSlider(MediaPlayer mediaPlayer, Slider songProgressSlider) {
+        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+                songProgressSlider.setValue(newValue.toSeconds());
+            }
+        });
+
+        songProgressSlider.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mediaPlayer.seek(Duration.seconds(songProgressSlider.getValue()));
+            }
+        });
+
+        songProgressSlider.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mediaPlayer.seek(Duration.seconds(songProgressSlider.getValue()));
+            }
+        });
+
+        mediaPlayer.setOnReady(new Runnable() {
+            @Override
+            public void run() {
+                Duration total = media.getDuration();
+                songProgressSlider.setMax(total.toSeconds());
+            }
+        });
     }
 }
