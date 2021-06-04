@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class FileDataLoader implements DataLoader {
 
     private MusicItem musicItem;
-    private boolean ready = false;
     ArrayList<MusicItem> playList = new ArrayList<>();
 
     public FileDataLoader(){

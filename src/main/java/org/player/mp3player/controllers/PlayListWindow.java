@@ -11,13 +11,12 @@ import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PlayListWindow  implements Initializable {
 
     @FXML
-    private TableView tableView;
+    private TableView<MusicItem> tableView;
 
 
 
@@ -56,7 +55,7 @@ public class PlayListWindow  implements Initializable {
 //        MusicItem testMusicItem = new MusicItem(1,"Cleo","Misie","2:25",null);
 //        playListData.add(testMusicItem);
 
-        playListData = FXCollections.observableList(Music.getInstance().playList);
+        playListData = FXCollections.observableList(Music.getInstance().getPlaylist());
         tableView.setItems(playListData);
     }
 }

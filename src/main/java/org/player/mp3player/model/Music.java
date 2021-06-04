@@ -4,17 +4,17 @@
 
 package org.player.mp3player.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Music {
     private static Music instance;
-    public ArrayList<MusicItem> playList;
+    private List<MusicItem> playList;
 
     private Music() {
 
     }
 
-    public static Music getInstance(ArrayList<MusicItem> playList) {
+    public static Music getInstance(List<MusicItem> playList) {
         Music.getInstance().playList = playList;
         return instance;
     }
@@ -34,4 +34,7 @@ public class Music {
         return playList.get(songNumber).getTitle();
     }
 
+    public List<MusicItem> getPlaylist() {
+        return playList;
+    }
 }
