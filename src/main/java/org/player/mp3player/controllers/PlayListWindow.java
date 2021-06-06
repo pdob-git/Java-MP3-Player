@@ -1,7 +1,9 @@
 package org.player.mp3player.controllers;
 
+import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,9 +12,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.player.mp3player.controllers.rowselection.StyleChangingRowFactory;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
-
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PlayListWindow  implements Initializable {
 
@@ -56,10 +57,6 @@ public class PlayListWindow  implements Initializable {
                 new PropertyValueFactory<MusicItem,String>("time")
         );
 
-//        playListData = FXCollections.observableList(new ArrayList<MusicItem>());
-//        MusicItem testMusicItem = new MusicItem(1,"Cleo","Misie","2:25",null);
-//        playListData.add(testMusicItem);
-
         playListData = FXCollections.observableList(Music.getInstance().getPlaylist());
         tableView.setItems(playListData);
     }
@@ -73,14 +70,11 @@ public class PlayListWindow  implements Initializable {
     }
 
     public void highlightSelected(){
-
         rowFactory.getStyledRowIndices().setAll(tableView.getSelectionModel().getSelectedIndices());
     }
+
+    public void highlightPlayed(int songPlayed){
+        ObservableList<Integer> rowsToHighlight = FXCollections.observableList(Arrays.asList(songPlayed));
+        rowFactory.getStyledRowIndices().setAll(rowsToHighlight);
+    }
 }
-
-
-//    private Integer id;
-//    private String artist;
-//    private String title;
-//    private Double time;
-//    private String path;
