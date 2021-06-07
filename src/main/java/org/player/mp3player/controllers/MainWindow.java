@@ -1,10 +1,6 @@
 package org.player.mp3player.controllers;
 
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,32 +9,27 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import org.player.mp3player.controllers.listener.ListenerInitializer;
 import org.player.mp3player.controllers.title.SongTitleController;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
+import org.player.mp3player.model.exception.NotImplementedYetException;
 import org.player.mp3player.repositories.FileDataLoader;
-
 
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainWindow implements Initializable {
-
-
 
     @FXML
     private AnchorPane anchorPane;
@@ -61,29 +52,9 @@ public class MainWindow implements Initializable {
     private Media media;
     private MediaPlayer mediaPlayer;
 
-    private File directory;
-    private File[] files;
-
     private ArrayList<File> songs;
 
     private int songNumber;
-
-    private Timer timer;
-    private TimerTask task;
-    private boolean running;
-
-    private Image imagePrev;
-    private ImageView imageViewPrev;
-    private Image imagePlay;
-    private ImageView imageViewPlay;
-    private Image imageNext;
-    private ImageView imageViewNext;
-    private Image imagePause;
-    private ImageView imageViewPause;
-    private Image imageStop;
-    private ImageView imageViewStop;
-    private Image imageOpen;
-    private ImageView imageViewOpen;
     private Music music;
     private SongTitleController songTitleController;
 
@@ -94,14 +65,14 @@ public class MainWindow implements Initializable {
 
         initButtons();
 
-        songs = new ArrayList<File>();
-        directory = new File("music");
+        songs = new ArrayList<>();
+        File directory = new File("music");
 
         if(!directory.exists()){
             directory.mkdir();
         }
 
-        files = directory.listFiles();
+        File[] files = directory.listFiles();
 
 
         if (files != null){
@@ -124,7 +95,7 @@ public class MainWindow implements Initializable {
         mediaPlayer = new MediaPlayer(media);
         songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
         mediaPlayer.play();
-        startSlider(mediaPlayer, songProgressSlider);
+        mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
 
     }
 
@@ -135,7 +106,7 @@ public class MainWindow implements Initializable {
         mediaPlayer.stop();
     }
     public void previousMedia(){
-
+        throw new NotImplementedYetException();
     }
 
     public void nextMedia(){
@@ -144,7 +115,7 @@ public class MainWindow implements Initializable {
             songNumber++;
             mediaPlayer.stop();
 
-            media = new Media(music.playList.get(songNumber).getPath());
+            media = new Media(music.getSongPath(songNumber));
             mediaPlayer = new MediaPlayer(media);
 
             songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
@@ -154,7 +125,7 @@ public class MainWindow implements Initializable {
             songNumber = 0;
             mediaPlayer.stop();
 
-            media = new Media(music.playList.get(songNumber).getPath());
+            media = new Media(music.getSongPath(songNumber));
             mediaPlayer = new MediaPlayer(media);
 
             songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
@@ -165,13 +136,15 @@ public class MainWindow implements Initializable {
     }
 
     public void openMedia(){
-
+        throw new NotImplementedYetException();
     }
 
     public void repeatPlayList(ActionEvent event) {
+        throw new NotImplementedYetException();
     }
 
     public void shufflePlayList(ActionEvent event) {
+        throw new NotImplementedYetException();
     }
 
     public void openPlayList(ActionEvent event) throws Exception  {
@@ -195,24 +168,24 @@ public class MainWindow implements Initializable {
     private void initButtons(){
 
         //Set Prev Button Icon
-        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous", imagePrev, imageViewPrev);
+        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous");
         //Set Play Button Icon
-        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", "Play", imagePlay, imageViewPlay);
+        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", "Play");
         //Set Pause Button Icon
-        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", "Pause", imagePause, imageViewPause);
+        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", "Pause");
         //Set Stop Button Icon
-        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", "Stop", imageStop, imageViewStop);
+        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", "Stop");
         //Set Next Button Icon
-        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", "Next", imageNext, imageViewNext);
+        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", "Next");
         //Set Open Button Icon
-        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", "Open", imageOpen, imageViewOpen);
+        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", "Open");
 
     }
 
-    private void setButtonGraphicsAndTooltip(Button button, String iconPath, String toolTip, Image image, ImageView imageView){
+    private void setButtonGraphicsAndTooltip(Button button, String iconPath, String toolTip){
         //Set Button graphic and tooltip
-        image = new Image(this.getClass().getResourceAsStream(iconPath));
-        imageView = new ImageView(image);
+        Image image = new Image(this.getClass().getResourceAsStream(iconPath));
+        ImageView imageView = new ImageView(image);
         imageView.setFitHeight(20);
         imageView.setPreserveRatio(true);
         button.setGraphic(imageView);
@@ -222,34 +195,4 @@ public class MainWindow implements Initializable {
         button.setTooltip(openTooltip);
     }
 
-    private void startSlider(MediaPlayer mediaPlayer, Slider songProgressSlider) {
-        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-                songProgressSlider.setValue(newValue.toSeconds());
-            }
-        });
-
-        songProgressSlider.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                mediaPlayer.seek(Duration.seconds(songProgressSlider.getValue()));
-            }
-        });
-
-        songProgressSlider.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                mediaPlayer.seek(Duration.seconds(songProgressSlider.getValue()));
-            }
-        });
-
-        mediaPlayer.setOnReady(new Runnable() {
-            @Override
-            public void run() {
-                Duration total = media.getDuration();
-                songProgressSlider.setMax(total.toSeconds());
-            }
-        });
-    }
 }

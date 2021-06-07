@@ -21,15 +21,14 @@ public class SongTitleController implements AutoCloseable {
     }
 
     public void setCurrentSongTitle(String currentSongTitle) {
-        if (isToLongSongTitle(currentSongTitle)) {
+        if (Objects.nonNull(updateSongTitleTimerTask)) {
+            updateSongTitleTimerTask.cancel();
+        }
 
+        if (isToLongSongTitle(currentSongTitle)) {
             setSongTitle(currentSongTitle.substring(0, TITLE_LABEL_SIZE));
             runSongTitleUpdateTask(currentSongTitle);
-
         } else {
-            if (Objects.nonNull(updateSongTitleTimerTask)) {
-                updateSongTitleTimerTask.cancel();
-            }
             setSongTitle(currentSongTitle);
         }
     }
@@ -44,10 +43,6 @@ public class SongTitleController implements AutoCloseable {
 
     private void runSongTitleUpdateTask(String currentSongTitle) {
         StringRotateShifter currentSongTitleRouteShifter = new StringRotateShifter(currentSongTitle + ONE_ROTATE_SEPARATOR);
-
-        if (Objects.nonNull(updateSongTitleTimerTask)) {
-            updateSongTitleTimerTask.cancel();
-        }
         updateSongTitleTimerTask = new SongTitleTimerTask(songTitleLabel, currentSongTitleRouteShifter, TITLE_LABEL_SIZE);
         titleChangeTimer.scheduleAtFixedRate(updateSongTitleTimerTask, TIMER_PERIOD, TIMER_PERIOD);
     }
