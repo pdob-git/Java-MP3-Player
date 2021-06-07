@@ -1,12 +1,13 @@
 package org.player.mp3player.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.player.mp3player.controllers.rowselection.StyleChangingRowFactory;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
 
@@ -18,18 +19,22 @@ public class PlayListWindow  implements Initializable {
     @FXML
     private TableView<MusicItem> tableView;
 
-
+    @FXML
+    private Button button;
 
     @FXML
     private TableColumn idColumn, artistColumn, titleColumn, timeColumn;
 
     private ObservableList<MusicItem> playListData;
 
+    private StyleChangingRowFactory<MusicItem> rowFactory;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         setTableViewData();
+        setTableViewStyles();
         tableView.setId("tableView");
 
     }
@@ -57,6 +62,19 @@ public class PlayListWindow  implements Initializable {
 
         playListData = FXCollections.observableList(Music.getInstance().getPlaylist());
         tableView.setItems(playListData);
+    }
+
+    private void setTableViewStyles(){
+        rowFactory = new StyleChangingRowFactory<>("highlightedRow");
+        tableView.setRowFactory(rowFactory);
+
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        button.disableProperty().bind(Bindings.isEmpty(tableView.getSelectionModel().getSelectedIndices()));
+    }
+
+    public void highlightSelected(){
+
+        rowFactory.getStyledRowIndices().setAll(tableView.getSelectionModel().getSelectedIndices());
     }
 }
 

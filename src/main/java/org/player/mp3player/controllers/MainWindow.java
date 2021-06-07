@@ -152,7 +152,8 @@ public class MainWindow implements Initializable {
 
         Scene playListScene = new Scene(playListWindow);
 
-        playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindow.css").toExternalForm());
+//        playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindow.css").toExternalForm());
+        playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindowexp.css").toExternalForm());
 
         if(playListStage == null){
             playListStage = new Stage();
