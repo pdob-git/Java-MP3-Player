@@ -5,11 +5,24 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
+import org.player.mp3player.model.MusicItem;
 
 import java.util.Collections;
+
+/*
+
+Combined code from
+https://gist.github.com/james-d/7813134
+&
+https://stackoverflow.com/questions/26563390/detect-doubleclick-on-row-of-tableview-javafx
+Modified to music item
+ */
 
 /**
  * A factory for <code>TableRow</code>s suitable for passing to
@@ -94,6 +107,16 @@ public class StyleChangingRowFactory<T> implements
             public void changed(ObservableValue<? extends Number> obs,
                     Number oldValue, Number newValue) {
                 updateStyleClass(row);
+            }
+        });
+
+
+        row.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                T rowData = row.getItem();
+                MusicItem musicItem = (MusicItem)rowData;
+//                System.out.println(musicItem.getId());
+                getStyledRowIndices().setAll(musicItem.getId()-1);
             }
         });
         
