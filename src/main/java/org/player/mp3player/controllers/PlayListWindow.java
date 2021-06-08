@@ -1,19 +1,21 @@
 package org.player.mp3player.controllers;
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.player.mp3player.controllers.rowselection.StyleChangingRowFactory;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
 import java.net.URL;
-import java.util.*;
+import java.util.Arrays;
+import java.util.ResourceBundle;
 
 public class PlayListWindow  implements Initializable {
 

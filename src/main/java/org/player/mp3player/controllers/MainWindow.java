@@ -58,7 +58,11 @@ public class MainWindow implements Initializable {
     private Music music;
     private SongTitleController songTitleController;
 
-    Stage playListStage;
+    private Stage playListStage;
+
+    private FXMLLoader loader;
+
+    private PlayListWindow playListWindowController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,6 +100,10 @@ public class MainWindow implements Initializable {
         songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
         mediaPlayer.play();
         mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
+
+        if(playListWindowController!=null){
+            playListWindowController.highlightPlayed(songNumber);
+        }
 
     }
 
@@ -148,9 +156,16 @@ public class MainWindow implements Initializable {
     }
 
     public void openPlayList(ActionEvent event) throws Exception  {
-        Parent playListWindow = FXMLLoader.load(getClass().getResource("../fxml/PlayListWindow.fxml"));
+
+        loader = new FXMLLoader(getClass().getResource("../fxml/PlayListWindow.fxml"));
+
+        Parent playListWindow = loader.load();
 
         Scene playListScene = new Scene(playListWindow);
+
+        playListWindowController = loader.getController();
+
+        playListWindowController.highlightPlayed(songNumber);
 
         playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindow.css").toExternalForm());
 
