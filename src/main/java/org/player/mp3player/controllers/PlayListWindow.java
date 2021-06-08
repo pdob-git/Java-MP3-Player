@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.player.mp3player.controllers.rowselection.StyleChangingRowFactory;
 import org.player.mp3player.model.Music;
 import org.player.mp3player.model.MusicItem;
@@ -31,12 +33,24 @@ public class PlayListWindow implements Initializable {
     private StyleChangingRowFactory<MusicItem> rowFactory;
 
 
+    @Setter(AccessLevel.PUBLIC) private MainWindow mainWindowController;
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         setTableViewData();
         setTableViewStyles();
         tableView.setId("tableView");
+
+        tableView.setOnMouseClicked(event -> {
+            if ((event.getClickCount() == 2) && (tableView.getSelectionModel().getSelectedItem() != null)) {
+                mainWindowController.stopMedia();
+                mainWindowController.setSongNumber(tableView.getSelectionModel().getSelectedItem().getId()-1);
+                mainWindowController.playMedia();
+            }
+        });
 
     }
 
@@ -78,4 +92,5 @@ public class PlayListWindow implements Initializable {
         ObservableList<Integer> rowsToHighlight = FXCollections.observableList(Arrays.asList(songPlayed));
         rowFactory.getStyledRowIndices().setAll(rowsToHighlight);
     }
+
 }
