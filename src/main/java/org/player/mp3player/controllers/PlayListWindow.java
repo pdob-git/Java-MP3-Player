@@ -80,12 +80,12 @@ public class PlayListWindow implements Initializable {
         tableView.setRowFactory(rowFactory);
 
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        button.disableProperty().bind(Bindings.isEmpty(tableView.getSelectionModel().getSelectedIndices()));
-
+//        button.disableProperty().bind(Bindings.isEmpty(tableView.getSelectionModel().getSelectedIndices()));
+        button.setDisable(true);
     }
 
     public void highlightSelected() {
-        rowFactory.getStyledRowIndices().setAll(tableView.getSelectionModel().getSelectedIndices());
+//        rowFactory.getStyledRowIndices().setAll(tableView.getSelectionModel().getSelectedIndices());
     }
 
     public void highlightPlayed(int songPlayed) {
