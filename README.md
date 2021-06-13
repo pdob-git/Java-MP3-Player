@@ -20,4 +20,3 @@ https://www.oracle.com/pl/java/technologies/javase/javase-jdk8-downloads.html
 Tool to generate FXML files. <br>
 https://gluonhq.com/products/scene-builder/
 
-Rebase test start
