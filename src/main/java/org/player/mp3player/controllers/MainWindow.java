@@ -17,6 +17,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.player.mp3player.controllers.listener.ListenerInitializer;
 import org.player.mp3player.controllers.title.SongTitleController;
 import org.player.mp3player.model.Music;
@@ -54,11 +56,16 @@ public class MainWindow implements Initializable {
 
     private ArrayList<File> songs;
 
+    @Setter(AccessLevel.PUBLIC)
     private int songNumber;
     private Music music;
     private SongTitleController songTitleController;
 
-    Stage playListStage;
+    private Stage playListStage;
+
+    private FXMLLoader loader;
+
+    private PlayListWindow playListWindowController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -68,15 +75,15 @@ public class MainWindow implements Initializable {
         songs = new ArrayList<>();
         File directory = new File("music");
 
-        if(!directory.exists()){
+        if (!directory.exists()) {
             directory.mkdir();
         }
 
         File[] files = directory.listFiles();
 
 
-        if (files != null){
-            for (File file : files){
+        if (files != null) {
+            for (File file : files) {
                 songs.add(file);
                 System.out.println(file);
             }
@@ -86,32 +93,43 @@ public class MainWindow implements Initializable {
         ArrayList<MusicItem> musicItems = fileDataLoader.loadData(directory);
 
         music = Music.getInstance(musicItems);
-        songTitleController =new SongTitleController(songTitleLabel);
+        songTitleController = new SongTitleController(songTitleLabel);
+
     }
 
-    public void playMedia(){
-      
+    public void playMedia() {
+
         media = new Media(music.getSongPath(songNumber));
         mediaPlayer = new MediaPlayer(media);
         songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
         mediaPlayer.play();
         mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
+//        System.out.println(mediaPlayer.getStatus());
+
+
+        if (playListWindowController != null) {
+            playListWindowController.highlightPlayed(songNumber);
+        }
 
     }
 
-    public void pauseMedia(){
+    public void pauseMedia() {
         mediaPlayer.pause();
     }
-    public void stopMedia(){
-        mediaPlayer.stop();
+
+    public void stopMedia() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
     }
-    public void previousMedia(){
+
+    public void previousMedia() {
         throw new NotImplementedYetException();
     }
 
-    public void nextMedia(){
+    public void nextMedia() {
 
-        if(songNumber < songs.size() - 1) {
+        if (songNumber < songs.size() - 1) {
             songNumber++;
             mediaPlayer.stop();
 
@@ -135,7 +153,7 @@ public class MainWindow implements Initializable {
 
     }
 
-    public void openMedia(){
+    public void openMedia() {
         throw new NotImplementedYetException();
     }
 
@@ -147,14 +165,22 @@ public class MainWindow implements Initializable {
         throw new NotImplementedYetException();
     }
 
-    public void openPlayList(ActionEvent event) throws Exception  {
-        Parent playListWindow = FXMLLoader.load(getClass().getResource("../fxml/PlayListWindow.fxml"));
+    public void openPlayList(ActionEvent event) throws Exception {
+
+        loader = new FXMLLoader(getClass().getResource("../fxml/PlayListWindow.fxml"));
+
+        Parent playListWindow = loader.load();
 
         Scene playListScene = new Scene(playListWindow);
 
+        playListWindowController = loader.getController();
+
+        playListWindowController.highlightPlayed(songNumber);
+        playListWindowController.setMainWindowController(this);
+
         playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindow.css").toExternalForm());
 
-        if(playListStage == null){
+        if (playListStage == null) {
             playListStage = new Stage();
         }
 
@@ -165,7 +191,7 @@ public class MainWindow implements Initializable {
         playListStage.show();
     }
 
-    private void initButtons(){
+    private void initButtons() {
 
         //Set Prev Button Icon
         setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous");
@@ -182,7 +208,7 @@ public class MainWindow implements Initializable {
 
     }
 
-    private void setButtonGraphicsAndTooltip(Button button, String iconPath, String toolTip){
+    private void setButtonGraphicsAndTooltip(Button button, String iconPath, String toolTip) {
         //Set Button graphic and tooltip
         Image image = new Image(this.getClass().getResourceAsStream(iconPath));
         ImageView imageView = new ImageView(image);

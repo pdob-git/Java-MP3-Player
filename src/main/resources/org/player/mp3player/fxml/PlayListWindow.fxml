@@ -10,7 +10,7 @@
    <bottom>
       <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Button" />
+          <Button fx:id="button" mnemonicParsing="false" onAction="#highlightSelected" text="Button" />
         </items>
       </ToolBar>
    </bottom>

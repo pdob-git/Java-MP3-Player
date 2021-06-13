@@ -1,3 +1,12 @@
+
+.table-view .highlightedRow {
+    -fx-text-background-color: white !important;
+    -fx-background-insets: 0, 1, 2 !important;
+    -fx-background: -fx-accent !important;
+    -fx-text-fill: -fx-selection-bar-text !important;
+
+}
+
 /* TABLES */
 
 .table-view,
@@ -79,14 +88,6 @@
     -fx-padding: 2;
 }
 
-.table-view .highlightedRow {
-    -fx-text-background-color: white !important;
-    -fx-background-insets: 0, 1, 2 !important;
-    -fx-background: -fx-accent !important;
-    -fx-text-fill: -fx-selection-bar-text !important;
-
-}
-
 
 .button {
     -fx-background-color:
@@ -112,3 +113,4 @@
     -fx-font-weight: bold;
     -fx-font-size: 10px;
 }
+
