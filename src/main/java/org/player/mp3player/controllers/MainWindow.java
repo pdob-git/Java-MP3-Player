@@ -17,6 +17,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import lombok.AccessLevel;
 import lombok.Setter;
 import org.player.mp3player.controllers.listener.ListenerInitializer;
@@ -66,10 +67,13 @@ public class MainWindow implements Initializable {
     private FXMLLoader loader;
 
     private PlayListWindow playListWindowController;
+    private Duration pausedTime = Duration.seconds(0);
+    private boolean playing;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        playing = false;
         initButtons();
 
         songs = new ArrayList<>();
@@ -99,58 +103,70 @@ public class MainWindow implements Initializable {
 
     public void playMedia() {
 
-        media = new Media(music.getSongPath(songNumber));
-        mediaPlayer = new MediaPlayer(media);
+        if (playing){
+            return;
+        }
+
+        if (pausedTime.toSeconds() > 0 && mediaPlayer != null){
+            mediaPlayer.seek(pausedTime);
+        }
+        else {
+            media = new Media(music.getSongPath(songNumber));
+            mediaPlayer = new MediaPlayer(media);
+        }
+
         songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
         mediaPlayer.play();
+        playing = true;
         mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
-//        System.out.println(mediaPlayer.getStatus());
-
 
         if (playListWindowController != null) {
             playListWindowController.highlightPlayed(songNumber);
         }
 
+        pausedTime = Duration.seconds(0);
+
     }
 
     public void pauseMedia() {
         mediaPlayer.pause();
+        pausedTime = mediaPlayer.getCurrentTime();
+        playing = false;
     }
 
     public void stopMedia() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            playing = false;
         }
     }
 
     public void previousMedia() {
-        throw new NotImplementedYetException();
+        if (songNumber > 0){
+            songNumber--;
+        }
+        else {
+            songNumber = music.getPlaylist().size() - 1;
+        }
+        stopMedia();
+        media = new Media(music.getSongPath(songNumber));
+        mediaPlayer = new MediaPlayer(media);
+        songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
+        playMedia();
     }
 
     public void nextMedia() {
 
         if (songNumber < songs.size() - 1) {
             songNumber++;
-            mediaPlayer.stop();
-
-            media = new Media(music.getSongPath(songNumber));
-            mediaPlayer = new MediaPlayer(media);
-
-            songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
-            playMedia();
         } else {
-
             songNumber = 0;
-            mediaPlayer.stop();
-
-            media = new Media(music.getSongPath(songNumber));
-            mediaPlayer = new MediaPlayer(media);
-
-            songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
-            playMedia();
         }
-
-
+        stopMedia();
+        media = new Media(music.getSongPath(songNumber));
+        mediaPlayer = new MediaPlayer(media);
+        songTitleController.setCurrentSongTitle(music.getSongTitle(songNumber));
+        playMedia();
     }
 
     public void openMedia() {
