@@ -46,8 +46,7 @@
 }
 
 .table-row-cell: selected {
-
-    -fx-text-background-color: white;
+    -fx-background-color: blue;
     /* -fx-background-radius: 5px;
     -fx-background-insets: 2px; */
 }
@@ -78,6 +77,14 @@
 .table-view .virtual-flow .scroll-bar .decrement-button {
     -fx-opacity: 0;
     -fx-padding: 2;
+}
+
+.table-view .highlightedRow {
+    -fx-text-background-color: white !important;
+    -fx-background-insets: 0, 1, 2 !important;
+    -fx-background: -fx-accent !important;
+    -fx-text-fill: -fx-selection-bar-text !important;
+
 }
 
 
