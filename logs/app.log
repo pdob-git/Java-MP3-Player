@@ -1,0 +1,116 @@
+2021-01-22 22:01:37.583 [INFO ] org.player.mp3player.App - Starting Java MP3 Player
+2021-03-22 22:03:28.847 [INFO ] org.player.mp3player.App - Starting Java MP3 Player
+2021-05-22 22:05:57.167 [INFO ] org.player.mp3player.App - Starting Java MP3 Player
+2021-05-22 22:05:57.740 [DEBUG] org.player.mp3player.controllers.MainWindow - music/04-Taylor Swift _ Out Of The Woods.mp3
+2021-05-22 22:05:57.741 [DEBUG] org.player.mp3player.controllers.MainWindow - music/03-Taylor Swift _ Style.mp3
+2021-05-22 22:05:57.741 [DEBUG] org.player.mp3player.controllers.MainWindow - music/01-Taylor Swift _ Welcome To New York.mp3
+2021-05-22 22:05:57.741 [DEBUG] org.player.mp3player.controllers.MainWindow - music/02-Taylor Swift _ Blank Space.mp3
+2021-05-22 22:05:57.741 [DEBUG] org.player.mp3player.controllers.MainWindow - music/Winter Nights – Scandinavianz (No Copyright Music).mp3
+2021-05-22 22:05:57.741 [DEBUG] org.player.mp3player.controllers.MainWindow - music/Giant Moon – Vendredi (No Copyright Music).mp3
+2021-05-22 22:05:57.742 [DEBUG] org.player.mp3player.controllers.MainWindow - music/Hypnosis – Vendredi (No Copyright Music).mp3
+2021-06-22 22:06:00.622 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Loaded files : 0
+2021-06-22 22:06:02.319 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.323 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 04-Taylor Swift _ Out Of The Woods.mp3
+2021-06-22 22:06:02.323 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:55
+2021-06-22 22:06:02.323 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-06-22 22:06:02.323 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Out Of The Woods
+2021-06-22 22:06:02.324 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.325 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 03-Taylor Swift _ Style.mp3
+2021-06-22 22:06:02.325 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:51
+2021-06-22 22:06:02.325 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-06-22 22:06:02.328 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Style
+2021-06-22 22:06:02.329 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.329 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 01-Taylor Swift _ Welcome To New York.mp3
+2021-06-22 22:06:02.329 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:32
+2021-06-22 22:06:02.330 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-06-22 22:06:02.330 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Welcome To New York
+2021-06-22 22:06:02.330 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.331 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 02-Taylor Swift _ Blank Space.mp3
+2021-06-22 22:06:02.331 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:51
+2021-06-22 22:06:02.331 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-06-22 22:06:02.331 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Blank Space
+2021-06-22 22:06:02.332 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.332 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File Winter Nights – Scandinavianz (No Copyright Music).mp3
+2021-06-22 22:06:02.333 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 2:25
+2021-06-22 22:06:02.333 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: null
+2021-06-22 22:06:02.333 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: null
+2021-06-22 22:06:02.334 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.335 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File Giant Moon – Vendredi (No Copyright Music).mp3
+2021-06-22 22:06:02.335 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 2:04
+2021-06-22 22:06:02.335 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: null
+2021-06-22 22:06:02.335 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: null
+2021-06-22 22:06:02.336 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-06-22 22:06:02.336 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File Hypnosis – Vendredi (No Copyright Music).mp3
+2021-06-22 22:06:02.336 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 2:02
+2021-06-22 22:06:02.336 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: null
+2021-06-22 22:06:02.337 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: null
+2021-06-22 22:06:07.189 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Out Of The Woods
+2021-06-22 22:06:07.216 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:12.017 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Style
+2021-06-22 22:06:12.059 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:13.900 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Welcome To New York
+2021-06-22 22:06:13.936 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Welcome To New York
+2021-06-22 22:06:13.964 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:18.762 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Blank Space
+2021-06-22 22:06:18.773 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Blank Space
+2021-06-22 22:06:18.835 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:22.876 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Winter Nights – Scandinavianz (No Copyright Music)
+2021-06-22 22:06:22.909 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:24.146 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Giant Moon – Vendredi (No Copyright Music)
+2021-06-22 22:06:24.168 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:27.134 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Winter Nights – Scandinavianz (No Copyright Music)
+2021-06-22 22:06:27.163 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:30.142 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Style
+2021-06-22 22:06:30.163 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-06-22 22:06:36.424 [INFO ] org.player.mp3player.App - Java MP3 Player closed correctly
+2021-14-22 22:14:15.953 [INFO ] org.player.mp3player.App - Starting Java MP3 Player
+2021-14-22 22:14:16.650 [DEBUG] org.player.mp3player.controllers.MainWindow - music/04-Taylor Swift _ Out Of The Woods.mp3
+2021-14-22 22:14:16.650 [DEBUG] org.player.mp3player.controllers.MainWindow - music/03-Taylor Swift _ Style.mp3
+2021-14-22 22:14:16.650 [DEBUG] org.player.mp3player.controllers.MainWindow - music/01-Taylor Swift _ Welcome To New York.mp3
+2021-14-22 22:14:16.651 [DEBUG] org.player.mp3player.controllers.MainWindow - music/02-Taylor Swift _ Blank Space.mp3
+2021-14-22 22:14:16.651 [DEBUG] org.player.mp3player.controllers.MainWindow - music/Winter Nights – Scandinavianz (No Copyright Music).mp3
+2021-14-22 22:14:16.651 [DEBUG] org.player.mp3player.controllers.MainWindow - music/Giant Moon – Vendredi (No Copyright Music).mp3
+2021-14-22 22:14:16.651 [DEBUG] org.player.mp3player.controllers.MainWindow - music/Hypnosis – Vendredi (No Copyright Music).mp3
+2021-14-22 22:14:19.044 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Loaded files : 0
+2021-14-22 22:14:19.804 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.804 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 04-Taylor Swift _ Out Of The Woods.mp3
+2021-14-22 22:14:19.804 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:55
+2021-14-22 22:14:19.804 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-14-22 22:14:19.805 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Out Of The Woods
+2021-14-22 22:14:19.805 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.806 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 03-Taylor Swift _ Style.mp3
+2021-14-22 22:14:19.806 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:51
+2021-14-22 22:14:19.806 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-14-22 22:14:19.806 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Style
+2021-14-22 22:14:19.807 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.807 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 01-Taylor Swift _ Welcome To New York.mp3
+2021-14-22 22:14:19.807 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:32
+2021-14-22 22:14:19.807 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-14-22 22:14:19.807 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Welcome To New York
+2021-14-22 22:14:19.808 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.808 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File 02-Taylor Swift _ Blank Space.mp3
+2021-14-22 22:14:19.808 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 3:51
+2021-14-22 22:14:19.808 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: Taylor Swift
+2021-14-22 22:14:19.809 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: Taylor Swift / Blank Space
+2021-14-22 22:14:19.809 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.810 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File Winter Nights – Scandinavianz (No Copyright Music).mp3
+2021-14-22 22:14:19.810 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 2:25
+2021-14-22 22:14:19.810 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: null
+2021-14-22 22:14:19.810 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: null
+2021-14-22 22:14:19.812 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.812 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File Giant Moon – Vendredi (No Copyright Music).mp3
+2021-14-22 22:14:19.812 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 2:04
+2021-14-22 22:14:19.813 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: null
+2021-14-22 22:14:19.813 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: null
+2021-14-22 22:14:19.815 [DEBUG] org.player.mp3player.repositories.FileDataLoader - createMusicItem
+2021-14-22 22:14:19.815 [DEBUG] org.player.mp3player.repositories.FileDataLoader - File Hypnosis – Vendredi (No Copyright Music).mp3
+2021-14-22 22:14:19.815 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Duration: 2:02
+2021-14-22 22:14:19.816 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Artist: null
+2021-14-22 22:14:19.816 [DEBUG] org.player.mp3player.repositories.FileDataLoader - Title: null
+2021-14-22 22:14:21.725 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Out Of The Woods
+2021-14-22 22:14:21.759 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-14-22 22:14:25.547 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Style
+2021-14-22 22:14:25.563 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-14-22 22:14:26.721 [DEBUG] org.player.mp3player.controllers.title.SongTitleController - Current song title : Taylor Swift / Welcome To New York
+2021-14-22 22:14:26.743 [DEBUG] org.player.mp3player.controllers.listener.ListenerInitializer - Listeners initializes successfully
+2021-14-22 22:14:31.340 [INFO ] org.player.mp3player.App - Java MP3 Player closed correctly

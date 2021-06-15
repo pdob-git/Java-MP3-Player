@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class PlayListWindow implements Initializable {
+    private String initialPath = "org/player/mp3player/";
 
     @FXML
     private TableView<MusicItem> tableView;
