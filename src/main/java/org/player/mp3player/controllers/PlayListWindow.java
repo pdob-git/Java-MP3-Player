@@ -1,6 +1,5 @@
 package org.player.mp3player.controllers;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,16 +25,18 @@ public class PlayListWindow implements Initializable {
     private Button button;
 
     @FXML
-    private TableColumn idColumn, artistColumn, titleColumn, timeColumn;
-
-    private ObservableList<MusicItem> playListData;
+    private TableColumn<MusicItem, Integer> idColumn;
+    @FXML
+    private TableColumn<MusicItem, String> artistColumn;
+    @FXML
+    private TableColumn<MusicItem, String> titleColumn;
+    @FXML
+    private TableColumn<MusicItem, String> timeColumn;
 
     private StyleChangingRowFactory<MusicItem> rowFactory;
 
-
-    @Setter(AccessLevel.PUBLIC) private MainWindow mainWindowController;
-
-
+    @Setter(AccessLevel.PUBLIC)
+    private MainWindow mainWindowController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,22 +57,22 @@ public class PlayListWindow implements Initializable {
 
     private void setTableViewData() {
         idColumn.setCellValueFactory(
-                new PropertyValueFactory<MusicItem, Integer>("id")
+                new PropertyValueFactory<>("id")
         );
 
         artistColumn.setCellValueFactory(
-                new PropertyValueFactory<MusicItem, String>("artist")
+                new PropertyValueFactory<>("artist")
         );
 
         titleColumn.setCellValueFactory(
-                new PropertyValueFactory<MusicItem, String>("title")
+                new PropertyValueFactory<>("title")
         );
 
         timeColumn.setCellValueFactory(
-                new PropertyValueFactory<MusicItem, String>("time")
+                new PropertyValueFactory<>("time")
         );
 
-        playListData = FXCollections.observableList(Music.getInstance().getPlaylist());
+        ObservableList<MusicItem> playListData = FXCollections.observableList(Music.getInstance().getPlaylist());
         tableView.setItems(playListData);
     }
 

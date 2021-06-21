@@ -44,10 +44,24 @@ public class MainWindow implements Initializable {
     private Label songTitleLabel;
 
     @FXML
-    private Button playButton, pauseButton, stopButton, previousButton, nextButton, openButton;
+    private Button playButton;
+    @FXML
+    private Button pauseButton;
+    @FXML
+    private Button stopButton;
+    @FXML
+    private Button previousButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Button openButton;
 
     @FXML
-    private Button repeatButton, shuffleButton, playlistButton;
+    private Button repeatButton;
+    @FXML
+    private Button shuffleButton;
+    @FXML
+    private Button playlistButton;
 
     @FXML
     private Slider songProgressSlider;
@@ -69,10 +83,11 @@ public class MainWindow implements Initializable {
     private PlayListWindow playListWindowController;
     private Duration pausedTime = Duration.seconds(0);
     private boolean playing;
+    private ResourceBundle resourceBundle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        resourceBundle=ResourceBundle.getBundle("org.player.mp3player.lang.default");
         playing = false;
         initButtons();
 
@@ -184,7 +199,7 @@ public class MainWindow implements Initializable {
     public void openPlayList(ActionEvent event) throws Exception {
 
         loader = new FXMLLoader(getClass().getResource("../fxml/PlayListWindow.fxml"));
-
+        loader.setResources(resourceBundle);
         Parent playListWindow = loader.load();
 
         Scene playListScene = new Scene(playListWindow);
@@ -212,7 +227,7 @@ public class MainWindow implements Initializable {
         //Set Prev Button Icon
         setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous");
         //Set Play Button Icon
-        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", "Play");
+        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", resourceBundle.getString("tooltip.play"));
         //Set Pause Button Icon
         setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", "Pause");
         //Set Stop Button Icon
