@@ -32,15 +32,15 @@ public class PlayListWindow implements Initializable {
     private TableColumn<MusicItem, String> titleColumn;
     @FXML
     private TableColumn<MusicItem, String> timeColumn;
-
     private StyleChangingRowFactory<MusicItem> rowFactory;
+    private ResourceBundle resourceBundle;
 
     @Setter(AccessLevel.PUBLIC)
     private MainWindow mainWindowController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        resourceBundle=resources;
         setTableViewData();
         setTableViewStyles();
         tableView.setId("tableView");

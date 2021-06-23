@@ -87,7 +87,7 @@ public class MainWindow implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        resourceBundle=ResourceBundle.getBundle("org.player.mp3player.lang.default");
+        resourceBundle = resources;
         playing = false;
         initButtons();
 
@@ -118,14 +118,13 @@ public class MainWindow implements Initializable {
 
     public void playMedia() {
 
-        if (playing){
+        if (playing) {
             return;
         }
 
-        if (pausedTime.toSeconds() > 0 && mediaPlayer != null){
+        if (pausedTime.toSeconds() > 0 && mediaPlayer != null) {
             mediaPlayer.seek(pausedTime);
-        }
-        else {
+        } else {
             media = new Media(music.getSongPath(songNumber));
             mediaPlayer = new MediaPlayer(media);
         }
@@ -157,10 +156,9 @@ public class MainWindow implements Initializable {
     }
 
     public void previousMedia() {
-        if (songNumber > 0){
+        if (songNumber > 0) {
             songNumber--;
-        }
-        else {
+        } else {
             songNumber = music.getPlaylist().size() - 1;
         }
         stopMedia();
@@ -225,17 +223,17 @@ public class MainWindow implements Initializable {
     private void initButtons() {
 
         //Set Prev Button Icon
-        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous");
+        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", resourceBundle.getString("tooltip.previous"));
         //Set Play Button Icon
         setButtonGraphicsAndTooltip(playButton, "../icons/play.png", resourceBundle.getString("tooltip.play"));
         //Set Pause Button Icon
-        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", "Pause");
+        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", resourceBundle.getString("tooltip.pause"));
         //Set Stop Button Icon
-        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", "Stop");
+        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", resourceBundle.getString("tooltip.stop"));
         //Set Next Button Icon
-        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", "Next");
+        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", resourceBundle.getString("tooltip.next"));
         //Set Open Button Icon
-        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", "Open");
+        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", resourceBundle.getString("tooltip.open"));
 
     }
 

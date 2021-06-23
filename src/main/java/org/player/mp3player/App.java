@@ -9,6 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+import java.util.ResourceBundle;
+
 public class App extends Application {
 
     public static void main(String[] args) {
@@ -17,7 +19,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/MainWindow.fxml"));
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/MainWindow.fxml"));
+        fxmlLoader.setResources(ResourceBundle.getBundle("org.player.mp3player.lang.default"));
+        Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("css/MainWindow.css").toExternalForm());
