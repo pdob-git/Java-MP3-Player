@@ -17,10 +17,10 @@
    <center>
       <TableView fx:id="tableView" prefHeight="120.0" prefWidth="400.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="idColumn" editable="false" maxWidth="800.0" prefWidth="25.0" text="Id" />
-          <TableColumn fx:id="artistColumn" editable="false" maxWidth="3500.0" prefWidth="109.0" text="Artist" />
-            <TableColumn fx:id="titleColumn" editable="false" prefWidth="209.0" text="Title" />
-            <TableColumn fx:id="timeColumn" editable="false" maxWidth="1200.0" prefWidth="40.0" text="Time" />
+          <TableColumn fx:id="idColumn" editable="false" maxWidth="800.0" prefWidth="25.0" text="%playlist.id" />
+          <TableColumn fx:id="artistColumn" editable="false" maxWidth="3500.0" prefWidth="109.0" text="%playlist.artist" />
+            <TableColumn fx:id="titleColumn" editable="false" prefWidth="209.0" text="%playlist.title" />
+            <TableColumn fx:id="timeColumn" editable="false" maxWidth="1200.0" prefWidth="40.0" text="%playlist.time" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
