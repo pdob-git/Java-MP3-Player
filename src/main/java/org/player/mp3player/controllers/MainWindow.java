@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.player.mp3player.controllers.listener.ListenerInitializer;
 import org.player.mp3player.controllers.title.SongTitleController;
 import org.player.mp3player.model.Music;
@@ -32,6 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+@Slf4j
 public class MainWindow implements Initializable {
 
     @FXML
@@ -104,7 +106,7 @@ public class MainWindow implements Initializable {
         if (files != null) {
             for (File file : files) {
                 songs.add(file);
-                System.out.println(file);
+                log.debug(file.toString());
             }
         }
 
