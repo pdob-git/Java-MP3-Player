@@ -5,8 +5,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
+@Slf4j
 public class ListenerInitializer implements Runnable {
   private final MediaPlayer mediaPlayer;
   private final Slider songProgressSlider;
@@ -25,5 +27,6 @@ public class ListenerInitializer implements Runnable {
 
     TimeLabelChangeListener timeLabelChangeListener = new TimeLabelChangeListener(songTimeLabel, total);
     mediaPlayer.currentTimeProperty().addListener(timeLabelChangeListener);
+    log.debug("Listeners initializes successfully");
   }
 }

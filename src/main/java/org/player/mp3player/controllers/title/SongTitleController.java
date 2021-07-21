@@ -1,11 +1,13 @@
 package org.player.mp3player.controllers.title;
 
 import javafx.scene.control.Label;
+import lombok.extern.slf4j.Slf4j;
 import org.player.mp3player.model.util.StringRotateShifter;
 
 import java.util.Objects;
 import java.util.Timer;
 
+@Slf4j
 public class SongTitleController implements AutoCloseable {
     private static final int TITLE_LABEL_SIZE = 30;
     private static final int TIMER_PERIOD = 200;
@@ -21,6 +23,7 @@ public class SongTitleController implements AutoCloseable {
     }
 
     public void setCurrentSongTitle(String currentSongTitle) {
+        log.debug("Current song title : {}", currentSongTitle);
         if (Objects.nonNull(updateSongTitleTimerTask)) {
             updateSongTitleTimerTask.cancel();
         }

@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.player.mp3player.controllers.listener.ListenerInitializer;
 import org.player.mp3player.controllers.title.SongTitleController;
 import org.player.mp3player.model.Music;
@@ -32,6 +33,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+@Slf4j
 public class MainWindow implements Initializable {
 
     @FXML
@@ -44,10 +46,24 @@ public class MainWindow implements Initializable {
     private Label songTitleLabel;
 
     @FXML
-    private Button playButton, pauseButton, stopButton, previousButton, nextButton, openButton;
+    private Button playButton;
+    @FXML
+    private Button pauseButton;
+    @FXML
+    private Button stopButton;
+    @FXML
+    private Button previousButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Button openButton;
 
     @FXML
-    private Button repeatButton, shuffleButton, playlistButton;
+    private Button repeatButton;
+    @FXML
+    private Button shuffleButton;
+    @FXML
+    private Button playlistButton;
 
     @FXML
     private Slider songProgressSlider;
@@ -69,10 +85,11 @@ public class MainWindow implements Initializable {
     private PlayListWindow playListWindowController;
     private Duration pausedTime = Duration.seconds(0);
     private boolean playing;
+    private ResourceBundle resourceBundle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        resourceBundle = resources;
         playing = false;
         initButtons();
 
@@ -89,7 +106,7 @@ public class MainWindow implements Initializable {
         if (files != null) {
             for (File file : files) {
                 songs.add(file);
-                System.out.println(file);
+                log.debug(file.toString());
             }
         }
 
@@ -103,14 +120,13 @@ public class MainWindow implements Initializable {
 
     public void playMedia() {
 
-        if (playing){
+        if (playing) {
             return;
         }
 
-        if (pausedTime.toSeconds() > 0 && mediaPlayer != null){
+        if (pausedTime.toSeconds() > 0 && mediaPlayer != null) {
             mediaPlayer.seek(pausedTime);
-        }
-        else {
+        } else {
             media = new Media(music.getSongPath(songNumber));
             mediaPlayer = new MediaPlayer(media);
         }
@@ -142,10 +158,9 @@ public class MainWindow implements Initializable {
     }
 
     public void previousMedia() {
-        if (songNumber > 0){
+        if (songNumber > 0) {
             songNumber--;
-        }
-        else {
+        } else {
             songNumber = music.getPlaylist().size() - 1;
         }
         stopMedia();
@@ -184,7 +199,7 @@ public class MainWindow implements Initializable {
     public void openPlayList(ActionEvent event) throws Exception {
 
         loader = new FXMLLoader(getClass().getResource("../fxml/PlayListWindow.fxml"));
-
+        loader.setResources(resourceBundle);
         Parent playListWindow = loader.load();
 
         Scene playListScene = new Scene(playListWindow);
@@ -210,17 +225,17 @@ public class MainWindow implements Initializable {
     private void initButtons() {
 
         //Set Prev Button Icon
-        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", "Previous");
+        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", resourceBundle.getString("tooltip.previous"));
         //Set Play Button Icon
-        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", "Play");
+        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", resourceBundle.getString("tooltip.play"));
         //Set Pause Button Icon
-        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", "Pause");
+        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", resourceBundle.getString("tooltip.pause"));
         //Set Stop Button Icon
-        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", "Stop");
+        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", resourceBundle.getString("tooltip.stop"));
         //Set Next Button Icon
-        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", "Next");
+        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", resourceBundle.getString("tooltip.next"));
         //Set Open Button Icon
-        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", "Open");
+        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", resourceBundle.getString("tooltip.open"));
 
     }
 
