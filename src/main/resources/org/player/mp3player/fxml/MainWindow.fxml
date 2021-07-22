@@ -15,13 +15,13 @@
             <Insets />
          </opaqueInsets>
          <font>
-            <Font size="19.0" />
+            <Font size="18.0" />
          </font>
          <padding>
             <Insets right="5.0" />
          </padding>
       </Label>
-      <Label fx:id="songTitleLabel" layoutX="112.0" layoutY="25.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Song Title" textFill="LIME">
+      <Label fx:id="songTitleLabel" layoutX="112.0" layoutY="25.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="%label.song.tile" textFill="LIME">
          <padding>
             <Insets left="5.0" right="5.0" />
          </padding>

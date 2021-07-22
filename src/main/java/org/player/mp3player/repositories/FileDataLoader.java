@@ -3,6 +3,7 @@ package org.player.mp3player.repositories;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import lombok.extern.slf4j.Slf4j;
 import org.player.mp3player.model.MusicItem;
 import org.player.mp3player.services.DataLoader;
 
@@ -11,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 
+@Slf4j
 public class FileDataLoader implements DataLoader {
 
     private MusicItem musicItem;
@@ -44,6 +46,7 @@ public class FileDataLoader implements DataLoader {
 //                System.out.println(file.getName());
             }
         }
+        log.debug("Loaded files : {}", playList.size());
         return playList;
     }
 
@@ -56,14 +59,13 @@ public class FileDataLoader implements DataLoader {
 
             @Override
             public void run() {
-                //To comment out
-//                System.out.println("createMusicItem");
-//                System.out.println("File " + file.getName());
-//                System.out.println("Duration: " + calculateSongTime(media.getDuration()));
-//                System.out.println("Artist: " + (String)media.getMetadata().get("artist"));
-//                System.out.println("Title: " + (String)media.getMetadata().get("title"));
+                log.debug("createMusicItem");
+                log.debug("File " + file.getName());
+                log.debug("Duration: " + calculateSongTime(media.getDuration()));
+                log.debug("Artist: " + media.getMetadata().get("artist"));
+                log.debug("Title: " + media.getMetadata().get("title"));
 
-                Integer ID = Integer.valueOf(id);
+                Integer musicId = id;
                 String artist = (String)media.getMetadata().get("artist");
                 String title = (String)media.getMetadata().get("title");
                 String time = calculateSongTime(media.getDuration());
@@ -73,7 +75,7 @@ public class FileDataLoader implements DataLoader {
                     title = file.getName().substring(0,file.getName().length()-4);
                 }
 
-                musicItem = new MusicItem(ID, artist, title, time, path);
+                musicItem = new MusicItem(musicId, artist, title, time, path);
                 playList.add(musicItem);
             }
         });
