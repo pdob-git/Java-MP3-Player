@@ -31,6 +31,7 @@ import org.player.mp3player.repositories.FileDataLoader;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 @Slf4j
@@ -77,6 +78,8 @@ public class MainWindow implements Initializable {
 
     @Setter(AccessLevel.PUBLIC)
     private int songNumber;
+    private int sizeSongs;
+    private int sizeSongsRandom;
     private Music music;
     private SongTitleController songTitleController;
 
@@ -198,7 +201,15 @@ public class MainWindow implements Initializable {
     }
 
     public void shufflePlayList(ActionEvent event) {
-        throw new NotImplementedYetException();
+        stopMedia();
+        Random rand = new Random();
+        sizeSongs = songs.size();
+        sizeSongsRandom = rand.nextInt(sizeSongs);
+        media = new Media(music.getSongPath(sizeSongsRandom));
+        mediaPlayer = new MediaPlayer(media);
+        songTitleController.setCurrentSongTitle(music.getSongTitle(sizeSongsRandom));
+        mediaPlayer.play();
+        mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
     }
 
     public void openPlayList(ActionEvent event) throws Exception {
