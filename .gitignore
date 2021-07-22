@@ -21,3 +21,6 @@ buildNumber.properties
 
 #Music Folder
 music/
+
+#Logs
+logs/
