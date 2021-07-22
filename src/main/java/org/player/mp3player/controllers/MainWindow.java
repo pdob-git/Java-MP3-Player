@@ -78,7 +78,6 @@ public class MainWindow implements Initializable {
 
     @Setter(AccessLevel.PUBLIC)
     private int songNumber;
-    private int sizeSongs;
     private int sizeSongsRandom;
     private Music music;
     private SongTitleController songTitleController;
@@ -203,8 +202,7 @@ public class MainWindow implements Initializable {
     public void shufflePlayList(ActionEvent event) {
         stopMedia();
         Random rand = new Random();
-        sizeSongs = songs.size();
-        sizeSongsRandom = rand.nextInt(sizeSongs);
+        sizeSongsRandom = rand.nextInt(songs.size());
         media = new Media(music.getSongPath(sizeSongsRandom));
         mediaPlayer = new MediaPlayer(media);
         songTitleController.setCurrentSongTitle(music.getSongTitle(sizeSongsRandom));
