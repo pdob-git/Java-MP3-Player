@@ -47,7 +47,7 @@ public class PlayListWindow implements Initializable {
         tableView.setOnMouseClicked(event -> {
             if ((event.getClickCount() == 2) && (tableView.getSelectionModel().getSelectedItem() != null)) {
                 mainWindowController.stopMedia();
-                mainWindowController.setSongNumber(tableView.getSelectionModel().getSelectedItem().getId()-1);
+                mainWindowController.setSongNumber(tableView.getSelectionModel().getFocusedIndex());
                 mainWindowController.playMedia();
             }
         });
