@@ -36,6 +36,8 @@ import java.util.ResourceBundle;
 @Slf4j
 public class MainWindow implements Initializable {
 
+    private String initialPath = "org/player/mp3player/";
+
     @FXML
     private AnchorPane anchorPane;
 
@@ -198,8 +200,9 @@ public class MainWindow implements Initializable {
 
     public void openPlayList(ActionEvent event) throws Exception {
 
-        loader = new FXMLLoader(getClass().getResource("../fxml/PlayListWindow.fxml"));
+        loader = new FXMLLoader(getClass().getClassLoader().getResource(initialPath + "fxml/PlayListWindow.fxml"));
         loader.setResources(resourceBundle);
+
         Parent playListWindow = loader.load();
 
         Scene playListScene = new Scene(playListWindow);
@@ -209,7 +212,7 @@ public class MainWindow implements Initializable {
         playListWindowController.highlightPlayed(songNumber);
         playListWindowController.setMainWindowController(this);
 
-        playListScene.getStylesheets().add(getClass().getResource("../css/PlayListWindow.css").toExternalForm());
+        playListScene.getStylesheets().add(getClass().getClassLoader().getResource(initialPath + "css/PlayListWindow.css").toExternalForm());
 
         if (playListStage == null) {
             playListStage = new Stage();
@@ -225,23 +228,24 @@ public class MainWindow implements Initializable {
     private void initButtons() {
 
         //Set Prev Button Icon
-        setButtonGraphicsAndTooltip(previousButton, "../icons/previous.png", resourceBundle.getString("tooltip.previous"));
+        setButtonGraphicsAndTooltip(previousButton, initialPath + "icons/previous.png", resourceBundle.getString("tooltip.previous"));
         //Set Play Button Icon
-        setButtonGraphicsAndTooltip(playButton, "../icons/play.png", resourceBundle.getString("tooltip.play"));
+        setButtonGraphicsAndTooltip(playButton, initialPath + "icons/play.png", resourceBundle.getString("tooltip.play"));
         //Set Pause Button Icon
-        setButtonGraphicsAndTooltip(pauseButton, "../icons/pause.png", resourceBundle.getString("tooltip.pause"));
+        setButtonGraphicsAndTooltip(pauseButton, initialPath + "icons/pause.png", resourceBundle.getString("tooltip.pause"));
         //Set Stop Button Icon
-        setButtonGraphicsAndTooltip(stopButton, "../icons/stop.png", resourceBundle.getString("tooltip.stop"));
+        setButtonGraphicsAndTooltip(stopButton, initialPath + "icons/stop.png", resourceBundle.getString("tooltip.stop"));
         //Set Next Button Icon
-        setButtonGraphicsAndTooltip(nextButton, "../icons/next.png", resourceBundle.getString("tooltip.next"));
+        setButtonGraphicsAndTooltip(nextButton, initialPath + "icons/next.png", resourceBundle.getString("tooltip.next"));
         //Set Open Button Icon
-        setButtonGraphicsAndTooltip(openButton, "../icons/eject.png", resourceBundle.getString("tooltip.open"));
+        setButtonGraphicsAndTooltip(openButton, initialPath + "icons/eject.png", resourceBundle.getString("tooltip.open"));
+
 
     }
 
     private void setButtonGraphicsAndTooltip(Button button, String iconPath, String toolTip) {
         //Set Button graphic and tooltip
-        Image image = new Image(this.getClass().getResourceAsStream(iconPath));
+        Image image = new Image(this.getClass().getClassLoader().getResourceAsStream(iconPath));
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(20);
         imageView.setPreserveRatio(true);

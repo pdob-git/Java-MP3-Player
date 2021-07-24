@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 @Slf4j
 public class App extends Application {
+    private String initialPath = "org/player/mp3player/";
 
     public static void main(String[] args) {
         launch(args);
@@ -21,14 +22,15 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         log.info("Starting Java MP3 Player");
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/MainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(initialPath + "fxml/MainWindow.fxml"));
         fxmlLoader.setResources(ResourceBundle.getBundle("org.player.mp3player.lang.default"));
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("css/MainWindow.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getClassLoader().getResource(initialPath + "css/MainWindow.css").toExternalForm());
 //        System.out.println(getClass().getResource("controllers/MainWindow.css").toExternalForm());
         stage.setScene(scene);
         stage.setResizable(false);
