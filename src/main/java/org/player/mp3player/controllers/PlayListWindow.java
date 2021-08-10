@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import lombok.AccessLevel;
 import lombok.Setter;
 import org.player.mp3player.controllers.rowselection.StyleChangingRowFactory;
@@ -20,26 +21,33 @@ public class PlayListWindow implements Initializable {
     private String initialPath = "org/player/mp3player/";
 
     @FXML
+    private BorderPane borderPane;
+
+
     private TableView<MusicItem> tableView;
 
     @FXML
     private Button button;
 
-    @FXML
+
     private TableColumn<MusicItem, Integer> idColumn;
-    @FXML
+
     private TableColumn<MusicItem, String> artistColumn;
-    @FXML
+
     private TableColumn<MusicItem, String> titleColumn;
-    @FXML
+
     private TableColumn<MusicItem, String> timeColumn;
     private StyleChangingRowFactory<MusicItem> rowFactory;
+
+    private ResourceBundle resourceBundle;
 
     @Setter(AccessLevel.PUBLIC)
     private MainWindow mainWindowController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        resourceBundle = resources;
+        initTable();
         setTableViewData();
         setTableViewStyles();
         tableView.setId("tableView");
@@ -51,6 +59,39 @@ public class PlayListWindow implements Initializable {
                 mainWindowController.playMedia();
             }
         });
+
+    }
+
+    private void initTable() {
+        // Create tableview
+        tableView = new TableView<>();
+
+        // Create columns
+        idColumn = new TableColumn<>(resourceBundle.getString("playlist.id"));
+        artistColumn = new TableColumn<>(resourceBundle.getString("playlist.artist"));
+        titleColumn = new TableColumn<>(resourceBundle.getString("playlist.title"));
+        timeColumn = new TableColumn<>(resourceBundle.getString("playlist.time"));
+
+        // Set columns widths
+        idColumn.setMaxWidth(800.0);
+        idColumn.setPrefWidth(25.0);
+
+        artistColumn.setMaxWidth(3500.0);
+        artistColumn.setPrefWidth(110.0);
+
+        timeColumn.setMaxWidth(800.0);
+        titleColumn.setPrefWidth(210.0);
+
+        timeColumn.setMaxWidth(1200.0);
+        timeColumn.setPrefWidth(40.0);
+
+        tableView.getColumns().setAll(idColumn, artistColumn, titleColumn, timeColumn);
+
+        tableView.setColumnResizePolicy(tableView.CONSTRAINED_RESIZE_POLICY);
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+
+        //Add to main pain of controller borderPane
+        borderPane.setCenter(tableView);
 
     }
 
