@@ -1,4 +1,4 @@
-package org.player.mp3player.controllers.rowselection;
+package org.player.mp3player.controllers.table;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
