@@ -203,11 +203,12 @@ public class MainWindow implements Initializable {
         stopMedia();
         Random rand = new Random();
         sizeSongsRandom = rand.nextInt(songs.size());
-        media = new Media(music.getSongPath(sizeSongsRandom));
-        mediaPlayer = new MediaPlayer(media);
-        songTitleController.setCurrentSongTitle(music.getSongTitle(sizeSongsRandom));
-        mediaPlayer.play();
-        mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
+//        media = new Media(music.getSongPath(sizeSongsRandom));
+//        mediaPlayer = new MediaPlayer(media);
+//        songTitleController.setCurrentSongTitle(music.getSongTitle(sizeSongsRandom));
+        songNumber = sizeSongsRandom;
+        playMedia();
+//        mediaPlayer.setOnReady(new ListenerInitializer(mediaPlayer, songProgressSlider, songTimeLabel));
     }
 
     public void openPlayList(ActionEvent event) throws Exception {
