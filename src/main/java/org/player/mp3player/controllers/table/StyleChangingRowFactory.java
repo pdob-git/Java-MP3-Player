@@ -1,4 +1,4 @@
-package org.player.mp3player.controllers.rowselection;
+package org.player.mp3player.controllers.table;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -110,15 +110,15 @@ public class StyleChangingRowFactory<T> implements
             }
         });
 
-
-        row.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                T rowData = row.getItem();
-                MusicItem musicItem = (MusicItem)rowData;
+//        row.setOnMouseClicked(event -> {
+//            if (event.getClickCount() == 2 && (!row.isEmpty())) {
+//                T rowData = row.getItem();
+//                MusicItem musicItem = (MusicItem)rowData;
 //                System.out.println(musicItem.getId());
-                getStyledRowIndices().setAll(musicItem.getId()-1);
-            }
-        });
+//                getStyledRowIndices().setAll(musicItem.getId()-1);
+//            }
+//        });
+
         
         styledRowIndices.addListener(new ListChangeListener<Integer>() {
             @Override

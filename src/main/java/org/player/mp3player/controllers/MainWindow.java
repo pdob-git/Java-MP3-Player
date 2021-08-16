@@ -123,6 +123,9 @@ public class MainWindow implements Initializable {
     public void playMedia() {
 
         if (playing) {
+            if (playListWindowController != null) {
+                playListWindowController.highlightPlayed(songNumber);
+            }
             return;
         }
 
@@ -256,4 +259,11 @@ public class MainWindow implements Initializable {
         button.setTooltip(openTooltip);
     }
 
+    public int getSongNumber() {
+        return songNumber;
+    }
+
+    public void setSongNumber(int songNumber) {
+        this.songNumber = songNumber;
+    }
 }
